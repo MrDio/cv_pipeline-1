@@ -68,13 +68,16 @@ This installation guide assumes you have an untouched Ubuntu 18.04.2 LTS install
    ```bash
    pip3 install -r requirements.txt
    ```
+   
 ## Source and link
    ```bash
    export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/cuda-10.1/lib64/
    ```
+   ```bash
    chmod +x link_cuda
    ./link_cuda
-   
+   ```
+
 ## Usage
 
 1. Start the api locally
