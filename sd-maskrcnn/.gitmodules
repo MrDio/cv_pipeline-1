@@ -1,3 +1,0 @@
-[submodule "maskrcnn"]
-	path = maskrcnn
-	url = https://www.github.com/ralfgulde/maskrcnn.git

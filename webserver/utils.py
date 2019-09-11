@@ -20,7 +20,7 @@ def dFromRequest(r):
     intr = r['intr']
     d_buff = base64.b64decode(depth_str)
     nparr_depth = np.frombuffer(d_buff, np.float32)
-    nparr_depth = np.reshape(nparr_depth, (480, 848))
+    nparr_depth = np.reshape(nparr_depth, (intr["height"], intr["width"]))
     return nparr_depth
 
 

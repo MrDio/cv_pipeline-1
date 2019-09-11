@@ -5,6 +5,9 @@ import json
 import base64
 import sys
 sys.path.append('.')
+sys.path.append('./gqcnn')
+sys.path.append('./sd_maskrcnn')
+sys.path.append('./sd_maskrcnn/maskrcnn')
 from webserver.utils import rgbdFromRequest, rgbdSegmaskFromRequest, plotImage, rgbFromRequest, dFromRequest
 from dexnet.network import DexnetLoader
 from dexnet.maskNet import MaskLoader
