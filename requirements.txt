@@ -25,3 +25,4 @@ visualization
 gputil
 psutil
 jupyterlab
+flask
