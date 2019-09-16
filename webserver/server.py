@@ -70,7 +70,6 @@ def fcgqcnnsuction():
 def mask():
     r = request.get_json()
     d = dFromRequest(r)
-    plotImage(d)
     res = mask_net.predict(d)
     return jsonify(res)
 
