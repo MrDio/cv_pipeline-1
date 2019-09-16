@@ -37,7 +37,6 @@ class MaskLoader():
         print(self.model.keras_model.layers[0].dtype)
 
     def predict(self, depth_img):
-        depth_img = cv2.resize(depth_img, (512, 512))
         img = ((depth_img / depth_img.max()) * 255).astype(np.uint8)
         rgb = np.dstack((img, img, img))
         with self.graph.as_default():
