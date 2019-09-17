@@ -93,10 +93,10 @@ class RealsenseSensor():
             self._pipe.wait_for_frames()
         self._running = True
         self._dev = self._profile.get_device()
-        self.advanced_mode = rs.rs400_advanced_mode(self._dev)
-        self.advanced_mode.load_json(self.advanced_cfg)
+        #self.advanced_mode = rs.rs400_advanced_mode(self._dev)
+        #self.advanced_mode.load_json(self.advanced_cfg)
         logger.info("Realsense stream started.")
-        logger.info("Advanced mode is {}".format(self.advanced_mode.is_enabled()))
+        #logger.info("Advanced mode is {}".format(self.advanced_mode.is_enabled()))
 
     def stop(self):
         if not self._running:
