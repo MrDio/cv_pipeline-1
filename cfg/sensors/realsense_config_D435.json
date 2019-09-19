@@ -1,5 +1,5 @@
 {
-    "id": "920312072864",
+    "id": "849412060288",
     "fps": 30,
     "cams": [
         {
@@ -8,5 +8,5 @@
             "h": 480
         }
     ],
-    "advanced": "cfg/sensors/high_accuracy.json"
+    "advanced": "cfg/sensors/D435_high_accuracy.json"
 }

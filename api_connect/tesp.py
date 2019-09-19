@@ -10,5 +10,5 @@ try:
 except:
 	pass
 
-cam = sensor.RealsenseSensor("cfg/sensors/realsense_config.json")
+cam = sensor.RealsenseSensor("cfg/sensors/realsense_config_D435.json")
 cam.start()
