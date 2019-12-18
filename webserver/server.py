@@ -11,6 +11,11 @@ sys.path.append('./sd_maskrcnn/maskrcnn')
 from webserver.utils import rgbdFromRequest, rgbdSegmaskFromRequest, plotImage, rgbFromRequest, dFromRequest
 from dexnet.network import DexnetLoader
 from dexnet.maskNet import MaskLoader
+import tensorflow as tf
+
+config = tf.ConfigProto()
+config.gpu_options.allow_growth = True
+session = tf.Session(config=config)
 
 
 mask_net = MaskLoader()
