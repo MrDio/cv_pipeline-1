@@ -1,0 +1,8 @@
+#request constants
+string intrinsics
+sensor_msgs/Image rgb
+sensor_msgs/Image depth
+sensor_msgs/Image mask
+---
+#response constants
+string res

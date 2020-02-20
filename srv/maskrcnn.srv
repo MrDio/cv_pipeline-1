@@ -1,0 +1,5 @@
+#request constants
+sensor_msgs/Image depth
+---
+#response constants
+sensor_msgs/Image[] res
