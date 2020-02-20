@@ -21,11 +21,11 @@ bridge = cv_bridge.CvBridge()
 
 
 def _handle_gqcnn(req, func):
-    rgb = bridge.imgmsg_to_cv2(req.color, "rgb8")
+    rgb = bridge.imgmsg_to_cv2(req.rgb, "rgb8")
     depth = bridge.imgmsg_to_cv2(req.depth, "32FC1")
     intrinsics = json.loads(req.intrinsics)
-    res = func(img, d, intrinsics)
-    return res
+    res = func(rgb, depth, intrinsics)
+    return json.dumps(res)
     
 
 
