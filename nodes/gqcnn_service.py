@@ -28,6 +28,23 @@ def _handle_gqcnn(req, func):
     return json.dumps(res)
     
 
+def _handle_fcgqcnn(req, func):
+    rgb = bridge.imgmsg_to_cv2(req.rgb, "rgb8")
+    depth = bridge.imgmsg_to_cv2(req.depth, "32FC1")
+    mask = bridge.imgmsg_to_cv2(req.mask, "rgb8")
+    intrinsics = json.loads(req.intrinsics)
+    res = func(rgb, depth, mask, intrinsics)
+    return json.dumps(res)
+
+def _handle_mask(req, func):
+    depth = bridge.imgmsg_to_cv2(req.depth, "32FC1")
+    res = func(depth)
+    masks = []
+    for mask in res["masks"]:
+        mask_img = bridge.cv2_to_imgmsg(np.array(mask), "rgb8")
+        masks.append(mask_img)
+    print(res["masks"])
+    return masks
 
 class PipelineService():
     
@@ -40,7 +57,11 @@ class PipelineService():
     
     def start(self):
 
-        rospy.Service("gqcnnsuction", gqcnnsuction, lambda req: _handle_gqcnn(req, lambda img, d, intrinsics: self.gqcnnpj_net.predict(self.gqcnnpj_net.rgbd2state(img, d, intrinsics))))
+        rospy.Service("gqcnnpj", gqcnnpj, lambda req: _handle_gqcnn(req, lambda img, d, intrinsics: self.gqcnnpj_net.predict(self.gqcnnpj_net.rgbd2state(img, d, intrinsics))))
+        rospy.Service("gqcnnsuction", gqcnnsuction, lambda req: _handle_gqcnn(req, lambda img, d, intrinsics: self.gqcnnsuction_net.predict(self.gqcnnsuction_net.rgbd2state(img, d, intrinsics))))
+        rospy.Service("fcgqcnnpj", gqcnnpj, lambda req: _handle_fcgqcnn(req, lambda img, d, mask, intrinsics: self.fcgqcnnpj_net.predict(self.fcgqcnnpj_net.rgbd2state(img, d, mask, intrinsics))))
+        rospy.Service("fcgqcnnsuction", gqcnnsuction, lambda req: _handle_fcgqcnn(req, lambda img, d, mask ,intrinsics: self.fcgqcnnsuction_net.predict(self.fcgqcnnsuction_net.rgbd2state(img, d, mask, intrinsics))))
+        rospy.Service("maskrcnn", maskrcnn, lambda req: _handle_mask(req, self.mask_net.predict))
         rospy.spin()
 
 
